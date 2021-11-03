@@ -32,6 +32,9 @@ Route::prefix('admin')->group(function () {
     });
 
 
+//dashboard
+// Route::any('/dashboard', [DashboardController::class,'index'])->name('dash');
+
 //users
 Route::any('/dashboard/users', [UserController::class,'index'])->name('users');
 Route::any('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');

@@ -48,7 +48,7 @@
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('dashboard') }}">
+                <a class="nav-link" href="{{ route('users') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>User Management</span></a>
             </li>
@@ -132,6 +132,7 @@
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
                         <a class="collapse-item active" href="blank.html">Blank Page</a>
+
                     </div>
                 </div>
             </li>
@@ -377,33 +378,14 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
 
-                    <div style="width: 80%;margin:0 auto;">
-    
-                        @isset($users) 
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                                </thead>
-                            <tbody>
-                            @foreach ($users as $user)
-                                {{-- <p>{{ $company->name }} is {{ $company->id }}</p>
-                                --}}
-                                <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->email }}</td>
-                                </tr> 
-                            @endforeach
-                            </tbody>
-                        </table>
-                            {{$user->links()}}
-                        
-                    </div>
-                    @endisset
+                    <p>Department: {{ $department }}</p>
+                    
+                    
+                    <p>Users: {{ $user }}</p>
+                    
+                    {{-- <p>Jobs</p> --}}
+                    {{-- {{ $job }} --}}
+
 
                 </div>
                 <!-- /.container-fluid -->

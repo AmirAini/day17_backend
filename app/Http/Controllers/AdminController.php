@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -55,6 +58,16 @@ class AdminController extends Controller
     }
 
     public function dashboard(){
-        return view('admin.dashboard');
+        $user=User::get()->count();
+        $department=DB::table('departments')->count();
+        $job=DB::table('jobs')->count();
+
+        //push variable
+        return view('admin.dashboard',
+        ['user'=>$user],
+        ['department'=>$department],
+        ['job'=>$job],);
     }
+
+    
 }
