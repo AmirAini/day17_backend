@@ -27,16 +27,16 @@ class JobsController extends Controller
             return redirect()->route('jobs');
         } else {
 
-            return view('branch.users',['job'=>$job]);
+            return view('branch.jobsEdit',compact('job'));
         }
     }
 
-    // public function delete(Request $request){
-    //     //target
-    //     $job = Job::where('id',$request->id)->first();
-    //     $job->delete();
-    //     return redirect()->route('jobs');
-    // }
+    public function delete(Request $request){
+        //target
+        $job = Job::where('id',$request->id)->first();
+        $job->delete();
+        return redirect()->route('jobs');
+    }
 
 
 

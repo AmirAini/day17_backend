@@ -10,30 +10,29 @@ class DepartmentController extends Controller
     //
     public function index(){
         //paginate
-        $users = Department::paginate(15);
-        return view('branch.users', ['users'=>$users]); //carry
+        $departments = Department::paginate(15);
+        return view('branch.department', ['departments'=>$departments]); //carry
     }
 
 
     public function edit(Request $request){
 
         //target, use first() to do query
-        $user = Department::where('id',$request->id)->first();
+        $department = Department::where('id',$request->id)->first();
 
-        if(isset($request->name) && isset($request->email)) {
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->save();
-            return redirect()->route('users');
+        if(isset($request->department_name)) {
+            $department->department_name = $request->department_name;
+            $department->save();
+            return redirect()->route('departments');
         } else {
-            return view('branch.departmentEdit',['user'=>$user]);
+            return view('branch.departmentEdit',compact('department'));
         }
     }
 
     public function delete(Request $request){
         //target
-        $user = Department::where('id',$request->id)->first();
-        $user->delete();
+        $department = Department::where('id',$request->id)->first();
+        $department->delete();
         return redirect()->route('departments');
     }
 

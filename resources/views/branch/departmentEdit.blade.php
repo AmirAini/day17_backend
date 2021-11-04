@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+hi<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -36,7 +36,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Edit Jobs<sup>2</sup>
+                <div class="sidebar-brand-text mx-3">Edit Dept<sup>2</sup>
                 <br>
                 
 
@@ -62,11 +62,11 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Job Management</span></a>
             </li>
-            {{-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('departments')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Department Management</span></a>
-            </li> --}}
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -298,9 +298,8 @@
                 
                 <form method="post">
                     @csrf
-                    <input type="hidden" name="id" value="{{$job->id}}">
-                    <input type="text" name="title"  value="{{$job->title}}">
-                    <input type="text" name="text" value="{{$job->text}}">
+                    <input type="hidden" name="id" value="{{$department->id}}">
+                    <input type="text" name="department_name"  value="{{$department->department_name}}">
                     <input type="submit" value="Submit">
                 </form>
 

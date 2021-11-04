@@ -63,7 +63,7 @@
                     <span>Job Management</span></a>
             </li>
             <li class="nav-item">
-                {{-- <a class="nav-link" href="{{ route('departments') }}"> --}}
+                <a class="nav-link" href="{{ route('departments') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Department Management</span></a>
             </li>
