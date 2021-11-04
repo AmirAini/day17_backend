@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class DepartmentController extends Controller
 {
     //
     public function index(){
         //paginate
-        $users = User::paginate(15);
+        $users = Department::paginate(15);
         return view('branch.users', ['users'=>$users]); //carry
     }
 
@@ -18,7 +18,7 @@ class UserController extends Controller
     public function edit(Request $request){
 
         //target, use first() to do query
-        $user = User::where('id',$request->id)->first();
+        $user = Department::where('id',$request->id)->first();
 
         if(isset($request->name) && isset($request->email)) {
             $user->name = $request->name;
@@ -26,16 +26,30 @@ class UserController extends Controller
             $user->save();
             return redirect()->route('users');
         } else {
-            return view('branch.usersEdit',['user'=>$user]);
+            return view('branch.departmentEdit',['user'=>$user]);
         }
     }
 
     public function delete(Request $request){
         //target
-        $user = User::where('id',$request->id)->first();
+        $user = Department::where('id',$request->id)->first();
         $user->delete();
-        return redirect()->route('users');
+        return redirect()->route('departments');
     }
 
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

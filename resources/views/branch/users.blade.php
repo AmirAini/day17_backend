@@ -395,8 +395,7 @@
                                 </thead>
                             <tbody>
                             @foreach ($users as $user)
-                                {{-- <p>{{ $company->name }} is {{ $company->id }}</p>
-                                --}}
+
                                 <tr>
                                     <th scope="users">{{ $user->id}}</th>
                                     <td>{{ $user->name}}</td>
@@ -412,7 +411,8 @@
                             @endforeach
                             </tbody>
                         </table>
-                        {{-- {{$user->links()}} --}}
+                        
+                        {{$user->links()}}
                         
                     </div>
                     @endisset

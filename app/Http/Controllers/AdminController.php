@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use JWTAuth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,12 +41,15 @@ class AdminController extends Controller
                 'password' => ['required'],
             ]);
 
-            if (Auth::attempt($credentials)) {
+            if (Auth::attempt($credentials)) { //problem here
                 if (Auth::user()->role == 1){
                 $request->session()->regenerate();
+                $jwt_token = JWTAuth::attempt($credentials);
+                
+                session(['jwt_token'=>$jwt_token]);
                 return redirect()->route('dashboard');
             }else {
-                return redirect('admin/');
+                return redirect('admin/dashboard');
             }
             }
 
@@ -57,16 +61,20 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
+
     public function dashboard(){
+
+        $jwt_token = session('jwt_token');
+
         $user=User::get()->count();
         $department=DB::table('departments')->count();
         $job=DB::table('jobs')->count();
 
         //push variable
-        return view('admin.dashboard',
-        ['user'=>$user],
-        ['department'=>$department],
-        ['job'=>$job],);
+        return view('admin.dashboard', compact('jwt_token','user','department','job'));
+        // ['user'=>$user,
+        // 'department'=>$department]);
+        // ['job'=>$job],);
     }
 
     

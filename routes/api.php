@@ -17,6 +17,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
 
-Route::post('/login',[ApiController::class, 'login']);
+//login
+Route::post('/login',[ApiController::class, 'login'])->name("api.login");
+
+//dashboard
+// Route::post('/dashboard',[ApiController::class, 'dashboard'])->name("api.dashboard");
+
+//group
+Route::group([
+    'middleware'=>'auth.jtw',
+],function() {
+    Route::post('/dashboard', [ApiController::class, 'dashboard']);
+    //! put all after login here.
+        
 });

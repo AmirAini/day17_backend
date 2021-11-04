@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
      */
     // public function run()
     // {
-    //     //
+    // //     //
     //     $superAdminUser= User::firstOrCreate(
     //         [
     //             'id'=>1
@@ -25,6 +25,7 @@ class AdminSeeder extends Seeder
     //         'name' => 'Super Admin',
     //         'email' => 'superadmin@invoke.com',
     //         'password' => bcrypt('password'),
+    //         'role'=> 1,
             
     //         ]);
     // }
@@ -37,6 +38,7 @@ class AdminSeeder extends Seeder
                 'name' => $faker->name,
                 'email'=> $faker->email,
                 'password'=>$faker->password,
+                // 'role'=>$faker->role,
             ]);
         }
     }

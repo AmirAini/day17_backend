@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,22 +14,22 @@
 
     <!-- Custom fonts for this template-->
     {{-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> --}}
+    <!-- Custom styles for this template-->
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
-
+        <link rel="stylesheet" href="{{ asset('css/sb-admin-2.min.css') }}">
+        <link href= "{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+        
+        <script src="<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        
 </head>
+    
+
 
 <body id="page-top">
-
-    
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -40,7 +42,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Users <sup>2</sup></div>
             </a>
 
             <!-- Divider -->
@@ -58,12 +60,12 @@
                     <span>User Management</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('jobs') }}">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Job Management</span></a>
             </li>
             <li class="nav-item">
-                {{-- <a class="nav-link" href="{{ route('departments') }}"> --}}
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Department Management</span></a>
             </li>
@@ -76,23 +78,6 @@
                 Interface
             </div>
 
-            <script>
-                $(document).ready(function(){
-                    alert('hi');
-                    $.ajax({
-                        url:'/api/dashboard',
-                        type:'post'.
-                        headers:{"Authorization": "Bearer {{ $jwt_token }}"},
-                        data:{},
-                        success:function(response){
-                            $("#user_total").html(response.user_total);
-                        },
-                        error:function(error){
-                        },
-                    })
-                    
-                })
-            </script>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -154,7 +139,6 @@
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
                         <a class="collapse-item active" href="blank.html">Blank Page</a>
-
                     </div>
                 </div>
             </li>
@@ -306,7 +290,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_1.svg') }}"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -318,7 +302,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_2.svg') }}"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -330,7 +314,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -398,20 +382,39 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    {{ $jwt_token }}
-                    hihi
-
-                    
-
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-                    <p>Department: {{ $department }}</p>
-                    
-                    
-                    <p>Users: {{ $user }}</p> 
-                    
-                    <p>Jobs: {{ $job }}</p>
-                    
-
+    
+                        @isset($jobs) 
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Text</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                            <tbody>
+                            @foreach ($jobs as $job)
+                                
+                                <tr>
+                                    <th scope="jobs">{{ $job->id}}</th>
+                                    <td>{{ $job->text}}</td>
+                                    <td>{{ $job->title }}</td>
+                                    <td>
+                                        <a href="{{route('job.edit',$job->id)}}">Edit</a>
+                                        <a href="{{route('job.delete',$job->id)}}">Delete</a>
+                                    </td>
+                                    
+                                    
+                                    
+                                </tr> 
+                            @endforeach
+                            </tbody>
+                        </table>
+                        {{-- {{$user->links()}} --}}
+                        
+                    </div>
+                    @endisset
 
                 </div>
                 <!-- /.container-fluid -->
@@ -454,24 +457,21 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{ route('login') }}">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-    @yield('scripts')
-    
-    
+    <script src="{{ asset('js/sb-admin-2.min.js')}}"></script>
 
 </body>
 
